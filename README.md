@@ -16,7 +16,7 @@ ___
 
 - Linux 
 ``` python
-git clone
+git clone https://github.com/W00nka/Tb-Learner.git
 cd Tb-Learner
 python3 main.py
 ```
