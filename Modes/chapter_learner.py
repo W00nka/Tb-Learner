@@ -10,27 +10,33 @@ def extract(chapter):
         extracted.append([collected[n][1], collected[n][2]])
 
 ## Questioner Russian to
-def question():
+def question(index):
+    if index == 0:
+        correct = 1
+    else:
+        correct = 0
+
     total_iterations = 100
     goal = 0
     failure = 0
+
     while goal != 10 and failure != 10:
         rando = random.randint(0, len(extracted)-1)
 
         progress_bar(goal * 10, total_iterations, prefix='Punkte:', suffix='Win', length=50)
         failure_bar(failure * 10, total_iterations, prefix='Fehler:', suffix='Game Over', length=50)
 
-        vocabular = input("Was ist die Übersetzung von " + extracted[rando][0] + " : ")
+        vocabular = input("Was ist die Übersetzung von \"" + extracted[rando][index] + "\" : ")
         
 
-        if vocabular.lower() == extracted[rando][1].lower():
-            print("Richtig! Die Übersetzung von " + extracted[rando][0] + " lautet: \"" + extracted[rando][1] + "\"")
-            time.sleep(4)
+        if vocabular.lower() == extracted[rando][correct].lower():
+            print("Richtig! Die Übersetzung von \"" + extracted[rando][index] + "\" lautet: \"" + extracted[rando][correct] + "\"")
+            time.sleep(3)
             os.system('clear')
             goal += 1
         else:
-            print("Leider falsch! Die Übersetzung von " + extracted[rando][0] + " lautet: \"" + extracted[rando][1] + "\"")
-            time.sleep(4)
+            print("Leider falsch! Die Übersetzung von \"" + extracted[rando][index] + "\" lautet: \"" + extracted[rando][correct] + "\"")
+            time.sleep(3)
             os.system('clear')
             failure += 1
     os.system('clear')
@@ -66,6 +72,7 @@ os.system('clear')
 conn = sqlite3.connect("vocabulary.db")
 cur = conn.cursor()
 chapter = input("Здравствуй, welches Kapitel möchtes du lernen? : ")
+index = int(input("Wie möchtest du lernen? [0] Russisch - Deutsch [1] Deutsch - Russisch : "))
 database = cur.execute('select * from vocabs where chapter = ?', (chapter,))
 collected = cur.fetchall()
 
@@ -73,4 +80,4 @@ collected = cur.fetchall()
 extracted = []
 os.system('clear')
 extract(chapter)
-question()
+question(index)
