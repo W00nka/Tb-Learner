@@ -1,18 +1,19 @@
 # Tb-Learner
 
-### What is Tb-Learner
-- Tb-Learner is a Terminal-based language learning assistant. The goal is to make the process of learning vocabulary a bit simpler. The Project is lightweight, open-source and especially lightweight, so it's accessible to everyone! 
+### Was ist Tb-Learner? 
+- Tb-Learner ist ein Terminal-basierte Vokabeltrainer, der speziell für die Sprachkombination Russisch-Deutsch geschrieben wurde. (Die Sprachkombination dient nur als proof of concept und kann durch eine andere Sprachkombination ersetzt werden) 
+- Ziel ist es Vokabeln lokal und nach den eigenen Bedürfnissen gestalten zu können 
 
 ___
 
-### How does it work? 
-- Tb-Learner is a python script that utilizes the flexibility of SQLite. All used vocabulary is stored locally within the branch!
-- There is even the option to modify the Database, so you can set your own custom learning experience. 
+### Wie funktioniert es? 
+- Tb-Learner ist ein Python Programm, welches eng mit einer SQLite Datenbank arbeitet
+-> Dadurch ist es möglich sich eine individuelle Lernerfahrung zu erstellen 
 
 ___
 
-### How to install Tb-Learner
-- Simply clone this repository and run the main.py and you are good to go! Just go into your Terminal and copy this command-chain:
+### Wie installiere und nutze ich Tb-Learner? 
+- Es ist ganz einfach! Klone einfach das Repo und starte das Programm (oder kopiere die commands) und you are good to go
 
 - Linux 
 ``` python
@@ -22,21 +23,13 @@ python3 main.py
 ```
 ___
 
-### Functions
+### Funktionen 
 
-##### Vocabulary Learner 
-
-##### Games
-
-##### Dictionary 
-
-##### Database-Modifier
-
-___
-
-### Functions-Roadmap for Tb-Learner
-
-___
-
-### FAQ
+- Tb-Learner hat folgende Funktionen:
+   - [x] Vokabel-Lerner
+   - [x] Build-in Zugang zur Datenbank
+   - [ ] Game modes
+   - [ ] Build-in Wörterbuch (inkl. Spracherkennung)
+   - [ ] Fehler Speicherung zum Schwächen-Training
+   - [ ] Lernstatistiken
 
