@@ -8,7 +8,7 @@ ___
 
 ### Wie funktioniert es? 
 - Tb-Learner ist ein Python Programm, welches eng mit einer SQLite Datenbank arbeitet
--> Dadurch ist es möglich sich eine individuelle Lernerfahrung zu erstellen 
+-> Dadurch ist es möglich, sich eine individuelle Lernerfahrung zu gestalten 
 
 ___
 
