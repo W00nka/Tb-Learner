@@ -30,20 +30,45 @@ def question(index):
         
 
         if vocabular.lower() == extracted[rando][correct].lower():
-            print("Richtig! Die Übersetzung von \"" + extracted[rando][index] + "\" lautet: \"" + extracted[rando][correct] + "\"")
-            time.sleep(3)
+            print("Richtig! Die Übersetzung von \"" + extracted[rando][index] + "\" lautet \"" + extracted[rando][correct] + "\"")
+            time.sleep(2)
             os.system('clear')
             goal += 1
         else:
-            print("Leider falsch! Die Übersetzung von \"" + extracted[rando][index] + "\" lautet: \"" + extracted[rando][correct] + "\"")
-            time.sleep(3)
+            print("Leider falsch! Die Übersetzung von \"" + extracted[rando][index] + "\" lautet \"" + extracted[rando][correct] + "\"")
+            time.sleep(2)
             os.system('clear')
             failure += 1
+
+            ## Adds mistake to error.db
+            conn = sqlite3.connect("error.db")
+            cur = conn.cursor()
+            cur.execute("""
+            CREATE TABLE IF NOT EXISTS error (
+                ZuÜbersetzen TEXT,
+                Übersetzung TEXT
+            )
+            """)
+            ZuÜbersetzen = extracted[rando][index]
+            Übersetzung = extracted[rando][correct]
+            daten = [ (ZuÜbersetzen, Übersetzung) ]
+            cur.executemany("INSERT INTO error (ZuÜbersetzen, Übersetzung) VALUES (?, ?)", daten)
+            conn.commit()
+            print("\"" + extracted[rando][index] + "\" wurde erfolgreich in \"Fehler wiederholen\" gespeichert")
+            conn.close()
+            input("Press Enter to Continue...!")
+            os.system('clear')
+
+    addition = goal + failure
     os.system('clear')
     if goal == 10:
         print("Glückwunsch, du hast das Kapitel " + chapter + " gemeistert!")
+        print("Du hast " + str(goal) + " von " + str(addition) + " richtig gehabt!")
+        input("Press Enter to Continue...!")
     else:
         print("Leider hast du das Kapitel " + chapter + " nicht geschafft. Gib nicht auf!")
+        print("Du hast " + str(goal) + " von " + str(addition) + " richtig gehabt!")
+        input("Press Enter to Continue...!")
 
 ## Goal Bar 
 def progress_bar(iteration, total, prefix='', suffix='', decimals=1, length=100, fill='█'):
@@ -65,14 +90,15 @@ def failure_bar(iteration, total, prefix='', suffix='', decimals=1, length=100, 
     sys.stdout.flush()
     for n in range(5):
         print("") 
-     
 
-## Backend
+## Backend 
 os.system('clear')
 conn = sqlite3.connect("vocabulary.db")
 cur = conn.cursor()
-chapter = input("Здравствуй, welches Kapitel möchtes du lernen? : ")
-index = int(input("Wie möchtest du lernen? [0] Russisch - Deutsch [1] Deutsch - Russisch : "))
+print("Здравствуй, welches Kapitel möchtes du lernen?")
+chapter = input("Wähle eine Zahl zwischen 1-2 : ")
+print("Wie möchtest du lernen? [0] Russisch - Deutsch [1] Deutsch - Russisch")
+index = int(input("Wähle eine Zahl zwischen 0-1 : "))
 database = cur.execute('select * from vocabs where chapter = ?', (chapter,))
 collected = cur.fetchall()
 

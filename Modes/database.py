@@ -4,6 +4,7 @@ import os
 import time
 import importlib
 
+## Reads the entire Database
 def reader():
     conn = sqlite3.connect("vocabulary.db")
     cur = conn.cursor()
@@ -14,6 +15,7 @@ def reader():
 
     conn.close()
 
+## Deletes Value from the Database
 def deleter():
     conn = sqlite3.connect("vocabulary.db")
     cur = conn.cursor()
@@ -40,6 +42,7 @@ def deleter():
 
     conn.close()
 
+## Adds set value to the database
 def add_to_database(chapter, russian, german):
     conn = sqlite3.connect("vocabulary.db")
     cur = conn.cursor()
@@ -63,6 +66,7 @@ def add_to_database(chapter, russian, german):
 
     conn.close()
 
+## Ask the User what they want to add to the Database -> Sends it to add_to_database to actually add
 def adder():
     chapter = input("Enter your Chapter: ")
     russian = input("Enter your russian word: ")
@@ -70,25 +74,28 @@ def adder():
     
     add_to_database(chapter, russian, german)
 
+## Home Screen
 def data_base_manager():
     os.system('clear')
     print("Willkommen im Database-Manager! \nWas möchtest du tun? \n [0] Deine Datenbank auslesen? \n [1] Deine Datenbank mit einem Filter auslesen? \n [2] Deiner Datenbank einen neuen Eintrag geben? \n [3] Inhalt in deiner Datenbank löschen?\n \n \n")
     data = int(input("Wähle eine Zahl zwischen 0-3 : "))
     decider(data)
 
+## Mode Chooser
 def decider(data):
     if data == 0:
         os.system('clear')
         reader()
-        input("Press \"Enter\" to continue")
+        input("Press \"Enter\" to Continue...!")
     if data == 1:
         print("Work in progress")
         time.sleep(3)
     if data == 2:
         adder()
-        input("Press \"Enter\" to continue")
+        input("Press \"Enter\" to Continue...!")
     if data == 3:
         deleter()
-        input("Press \"Enter\" to continue")
+        input("Press \"Enter\" to Continue...!")
 
+## Runtime
 data_base_manager()

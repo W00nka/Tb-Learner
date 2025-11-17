@@ -5,27 +5,28 @@ import time
 import sys
 import importlib
 
+## Homescreen + Variables
 counter = [[None],[None],[None],[None],[None],[None]]
 os.system('clear')
-print("Wilkommen in Tb-Learner \n \n \n \nMade by W00nka")
-time.sleep(2)
+print("Willkommen in Tb-Learner")
+time.sleep(1)
 
-# Home 
+## Home 
 def home():
     os.system('clear')
     print("Willkommen in deinem Home-Dashboard")
-    print("Was möchtest du tun? \n [0] Kapitel wiederholen \n [1] Gamemodes \n [2] Wörterbuch \n [3] Fehler wiederholen \n [4] Statistiken \n [5] Datenbank verändern \n [6] Exit")
+    print("Was möchtest du tun? \n [0] Vokabeltrainer \n [1] Gamemodes \n [2] Wörterbuch \n [3] Fehler wiederholen \n [4] Statistiken \n [5] Datenbank verändern \n [6] Exit")
 
-# Exit
+## Exit
 def exit_function():
     sys.exit()
 
-# Redirect
+## Redirect
 def director(choice):
     if choice == 0:
-        from Modes import chapter_learner
+        from Modes import vocabulary_learner
         if counter[choice][0] is not None:
-            importlib.reload(chapter_learner)
+            importlib.reload(vocabulary_learner)
     if choice == 1: 
         from Modes import gamemodes
         if counter[choice][0] is not None:
@@ -49,7 +50,7 @@ def director(choice):
     if choice == 6:
         sys.exit()
  
-# Runtime
+## Runtime
 home()
 choice = int(input("\n \n \nWähle bitte eine Zahl \"0-6\" : "))
 director(choice)
@@ -58,4 +59,3 @@ while True:
     home() 
     choice = int(input("\n \n \nWähle bitte eine Zahl \"0-6\" : "))
     director(choice)
-
