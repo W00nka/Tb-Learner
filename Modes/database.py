@@ -79,10 +79,11 @@ def data_base_manager():
     os.system('clear')
     print("Willkommen im Database-Manager! \nWas möchtest du tun? \n [0] Deine Datenbank auslesen? \n [1] Deine Datenbank mit einem Filter auslesen? \n [2] Deiner Datenbank einen neuen Eintrag geben? \n [3] Inhalt in deiner Datenbank löschen?\n \n \n")
     data = int(input("Wähle eine Zahl zwischen 0-3 : "))
-    decider(data)
+    decision = 3
+    decider(data, decision)
 
 ## Mode Chooser
-def decider(data):
+def decider(data, decision):
     if data == 0:
         os.system('clear')
         reader()
@@ -92,6 +93,14 @@ def decider(data):
         time.sleep(3)
     if data == 2:
         adder()
+        if decision == 3:
+            print("\n \nMöchtest du mehr hinzufügen? (Das hinzufügen wird nicht mehr unterbrochen) \n")
+            decision = int(input("Wähle : [0] JA; [1] Nein : "))
+        if decision == 0:
+            time.sleep(1.5)
+            os.system('clear')
+            while True:
+                decider(data, decision)
         input("Press \"Enter\" to Continue...!")
     if data == 3:
         deleter()
